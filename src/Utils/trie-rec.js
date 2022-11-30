@@ -161,9 +161,10 @@ export const combineNodes = (levels) => {
 
 export const minimize = (trie) => {
   minimizedTrie.root = trie.root;
-
+console.log("minimizedTrie transitions", trie.transitions);
   for (let i = 0; i < Object.keys(finalNodesofLevel).length; i++) {
     trie.transitions.forEach((transition) => {
+      {finalNodesofLevel["h" + i] &&
       finalNodesofLevel["h" + i].forEach((node) => {
         if (transition.nextNodes == node.name) {
           console.log(
@@ -181,11 +182,13 @@ export const minimize = (trie) => {
           );
         }
       });
+    }
     });
   }
 
   for (let i = 1; i < Object.keys(nonFinalNodesofLevel).length; i++) {
     trie.transitions.forEach((transition) => {
+      {nonFinalNodesofLevel["h" + i] &&
       nonFinalNodesofLevel["h" + i].forEach((node) => {
         if (transition.nextNodes == node.name) {
           minimizedTrie.transitions.push(
@@ -197,6 +200,7 @@ export const minimize = (trie) => {
           );
         }
       });
+    }
     });
   }
 
